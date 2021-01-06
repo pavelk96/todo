@@ -12,7 +12,6 @@ import './index.css';
 export default  class App extends Component {
 
     maxId = 100;
-
     state = {
         todoData: [
             {label: 'Drink Coffee1', important: false, id: 1},
@@ -53,7 +52,13 @@ export default  class App extends Component {
         });
     };
 
+    onToggleImportant = (id) =>{
+        console.log(`toggle important`, id);
+    };
 
+    onToggleDone = (id) =>{
+        console.log("oggle done", id);
+    };
     render() {
         return (
             <div className="todo-app">
@@ -66,6 +71,8 @@ export default  class App extends Component {
                 <TodoList
                     todos={this.state.todoData}
                     onDeleted={this.deleteItem }
+                    onToggleImportant={this.onToggleImportant}
+                    onToggleDone={this.onToggleDone}
                 />
                 {<ItemAddForm onItemAdded={this.addItem}/>}
 
