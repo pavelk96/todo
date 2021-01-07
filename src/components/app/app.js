@@ -4,7 +4,7 @@ import AppHeader from '../app-header';
 import SearchPanel from '../search-panel';
 import TodoList from '../todo-list';
 import ItemStatusFilter from '../item-status-filter';
-import Test from '../test'
+//import Test from '../test'
 import ItemAddForm from "../item-add-form";
 
 import './index.css';
