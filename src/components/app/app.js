@@ -48,8 +48,8 @@ export default  class App extends Component {
         this.setState(({todoData}) => {
             const idx = todoData.findIndex((el) => el.id === id);
             const newArray = [
-                ... todoData.slice(0, idx),
-                ... todoData.slice(idx + 1)
+                ...todoData.slice(0, idx),
+                ...todoData.slice(idx + 1)
             ];
             return {
                 todoData: newArray
@@ -61,8 +61,8 @@ export default  class App extends Component {
     toggleProperty(arr, id, propName){
         const idx = arr.findIndex((el) => el.id === id);
         const oldItem = arr[idx];
-        const newItem = {... oldItem, [propName]: !oldItem[propName]};
-        return  [... arr.slice(0, idx), newItem, ... arr.slice(idx + 1)]
+        const newItem = {...oldItem, [propName]: !oldItem[propName]};
+        return  [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]
 
     }
 
