@@ -5,7 +5,6 @@ import SearchPanel from '../search-panel';
 import TodoList from '../todo-list';
 import ItemStatusFilter from '../item-status-filter';
 import ItemAddForm from "../item-add-form";
-
 import './index.css';
 
 export default  class App extends Component {
@@ -16,8 +15,11 @@ export default  class App extends Component {
             this.createTodoItem('Drink coffe'),
             this.createTodoItem('Make Awesome App'),
             this.createTodoItem('Have a lunch'),
-        ]
+        ],
+        filter: "All"
     }
+
+    filterChange = (filter) => this.setState({filter});
 
     createTodoItem(label){
         return {
@@ -26,7 +28,6 @@ export default  class App extends Component {
             done:false,
             id: this.maxId++
         };
-
     }
 
     addItem = (text) => {
@@ -82,8 +83,8 @@ export default  class App extends Component {
 
         })
     };
-
     render() {
+        console.log(this.state);
         const { todoData } = this.state;
         const doneCount = todoData.filter((el) => el.done).length;
         const todoCount = todoData.length - doneCount;
@@ -92,7 +93,9 @@ export default  class App extends Component {
                 <AppHeader toDo={todoCount} done={doneCount}/>
                 <div className="top-panel d-flex">
                     <SearchPanel/>
-                    <ItemStatusFilter/>
+                    <ItemStatusFilter
+                    onFilterChange={this.filterChange}
+                    />
                 </div>
 
                 <TodoList
@@ -100,6 +103,7 @@ export default  class App extends Component {
                     onDeleted={this.deleteItem }
                     onToggleImportant={this.onToggleImportant}
                     onToggleDone={this.onToggleDone}
+                    filter={this.state.filter}
                 />
                 {<ItemAddForm onItemAdded={this.addItem}/>}
 
